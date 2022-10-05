@@ -125,10 +125,21 @@ TSet TSet::operator~(void) // дополнение
 
 istream& operator>>(istream& istr, TSet& s) // ввод
 {
+    int elem;
+    istr >> elem;
+    while ((elem >= 0) && (elem < s.MaxPower))
+    {
+        s.InsElem(elem);
+        istr >> elem;
+    }
     return istr;
 }
 
 ostream& operator<<(ostream& ostr, const TSet& s) // вывод
 {
+    for (int i = 0; i < s.MaxPower; i++)
+        if(s.IsMember(i))
+            ostr << i << " ";
+    ostr << endl;
     return ostr;
 }
